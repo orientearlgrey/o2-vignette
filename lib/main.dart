@@ -1,21 +1,38 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 
-void main() => runApp(
-      DevicePreview(
-        enabled: kIsWeb,        
-        builder: (context) => const MyApp(),
-      ),
-    );
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: Scaffold(
+        backgroundColor: const Color(0xFFFEFEFE),
+        body: Center(
+          child: DeviceFrame(
+            device: Devices.ios.iPhone13,
+            isFrameVisible: true,
+            screen: const FramedApp(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FramedApp extends StatelessWidget {
+  const FramedApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       title: 'Flutter Demo',
