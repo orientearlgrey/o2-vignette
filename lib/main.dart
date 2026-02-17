@@ -4,7 +4,7 @@ import 'package:device_preview/device_preview.dart';
 
 void main() => runApp(
       DevicePreview(
-        enabled: kIsWeb,
+        enabled: kIsWeb,        
         builder: (context) => const MyApp(),
       ),
     );
